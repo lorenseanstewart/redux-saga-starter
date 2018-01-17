@@ -5,15 +5,18 @@
     "description": "It's a starter app, duh.",
     "main": "index.js",
     "scripts": {
-        "local":
-            "NODE_ENV=development webpack-dev-server -d --env.platform=default --progress --hot",
+        "local": "NODE_ENV=development webpack-dev-server -d --env.platform=default --progress --hot",
         "test": ""
     },
     "keywords": [],
     "author": "Loren Stewart",
     "license": "ISC",
     "babel": {
-        "presets": ["env", "react", "stage-2"]
+        "presets": [
+            "env",
+            "react",
+            "stage-2"
+        ]
     },
     "dependencies": {
         "prop-types": "^15.6.0",
@@ -49,7 +52,14 @@
     },
     "jest": {
         "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
-        "testFileExtensions": ["es6", "js"],
-        "moduleFileExtensions": ["js", "json", "es6"]
+        "testFileExtensions": [
+            "es6",
+            "js"
+        ],
+        "moduleFileExtensions": [
+            "js",
+            "json",
+            "es6"
+        ]
     }
 }

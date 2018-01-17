@@ -20,14 +20,12 @@ const sagaMiddleware = createSagaMiddleware();
 //   applyMiddleware(sagaMiddleware)
 // )
 
-/*eslint-disable */
 const composeSetup =
     process.env.NODE_ENV !== "production" &&
     typeof window === "object" &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
         ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
         : compose;
-/*eslint-enable */
 
 // the compose() function allows redux dev tools
 // to watch the sagas and store
@@ -35,6 +33,14 @@ const store = createStore(
     IndexReducer,
     composeSetup(applyMiddleware(sagaMiddleware))
 );
+
+if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept("./reducers", () => {
+        const nextRootReducer = require("./reducers/index");
+        store.replaceReducer(nextRootReducer);
+    });
+}
 
 // Begin the Index Saga
 sagaMiddleware.run(IndexSaga);
